@@ -77,19 +77,19 @@ app.delete('/passengers', function(req, res){
   res.json(req.body.name);
 });
 
-app.get('/uber', function(){
-  // var request = unirest.get('https://sandbox-api.uber.com/')
-  // .header('Accept', 'application/json')
-  // .send({
-  //   'server_token': process.env.SERVER_TOKEN,
-  //   'latitude': 37.775818,
-  //   'longitude': -122.418028,
-  // })
-  // .end(function (res) {
-  //   console.log(res.body);
-  // });
-  console.log('heyo!');
-  res.send('heyo!');
+app.get('/uber', function(req, res){
+  var request = unirest.get('https://sandbox-api.uber.com/')
+  .header('Accept', 'application/json')
+  .send({
+    'server_token': process.env.SERVER_TOKEN,
+    'latitude': 37.775818,
+    'longitude': -122.418028,
+  })
+  .end(function (res) {
+    console.log(res.body);
+  });
+  console.log('heyo!', request);
+  res.send('heyo!', request);
 });
 
 app.listen(process.env.PORT, function(){
